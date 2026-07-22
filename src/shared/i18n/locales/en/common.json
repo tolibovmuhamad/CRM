@@ -1,0 +1,354 @@
+{
+  "app": {
+    "name": "Omuz CRM",
+    "tagline": "Learning center CRM"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "groups": "Groups",
+    "courses": "Courses",
+    "employees": "Employees",
+    "journal": "Journal",
+    "timetable": "Timetable",
+    "accounting": "Accounting",
+    "sms": "SMS mailings",
+    "administration": "Administration",
+    "allStudents": "All students",
+    "graduates": "Graduates",
+    "enroll": "Enroll students",
+    "more": "More"
+  },
+  "months": {
+    "short": {
+      "1": "Jan",
+      "2": "Feb",
+      "3": "Mar",
+      "4": "Apr",
+      "5": "May",
+      "6": "Jun",
+      "7": "Jul",
+      "8": "Aug",
+      "9": "Sep",
+      "10": "Oct",
+      "11": "Nov",
+      "12": "Dec"
+    },
+    "full": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May",
+      "6": "June",
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    }
+  },
+  "weekdays": {
+    "short": {
+      "mon": "Mn",
+      "tue": "Tu",
+      "wed": "Wd",
+      "thu": "Th",
+      "fri": "Fr",
+      "sat": "Sa",
+      "sun": "Su"
+    }
+  },
+  "courses": {
+    "addNew": "Add course",
+    "addSoon": "The course form comes in a later stage",
+    "searchPlaceholder": "Search by course name",
+    "groups": "Groups:",
+    "fee": "Fee:",
+    "viewAria": "Courses list view",
+    "editAria": "Edit course {{name}}",
+    "empty": "No courses yet",
+    "emptyHint": "Add the first course — groups can then be built on it.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No courses match this query. Change it or reset the filters.",
+    "loadError": "Could not load courses. Check the connection and try again.",
+    "columns": {
+      "name": "Course",
+      "groups": "Groups",
+      "students": "Students",
+      "schedule": "Schedule",
+      "duration": "Duration",
+      "fee": "Fee"
+    }
+  },
+  "resources": {
+    "heading": "Course resources",
+    "title": "{{name}} resources",
+    "addNew": "Add file",
+    "addSoon": "File upload comes with the backend",
+    "searchPlaceholder": "Search by file name",
+    "allTypes": "All types",
+    "downloadAria": "Download {{name}}",
+    "downloadSoon": "Downloading comes with the backend",
+    "empty": "No files yet",
+    "emptyHint": "Add the first material — course students will see it.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No files match these conditions. Change them or reset the filters.",
+    "loadError": "Could not load files. Check the connection and try again.",
+    "type": {
+      "pdf": "PDF",
+      "image": "Image",
+      "ppt": "Slides",
+      "word": "Word",
+      "doc": "Document",
+      "video": "Video"
+    },
+    "columns": {
+      "name": "File",
+      "type": "Type",
+      "size": "Size",
+      "uploadedAt": "Uploaded"
+    }
+  },
+  "groups": {
+    "addNew": "Add new",
+    "addSoon": "The group form comes in a later stage",
+    "searchPlaceholder": "Search group",
+    "students": "Students",
+    "passingStudents": "Passing students",
+    "journal": "Journal",
+    "viewAria": "Groups view",
+    "editAria": "Open group {{name}}",
+    "deleteAria": "Delete group {{name}}",
+    "deleteSoon": "Deleting groups arrives with the group form",
+    "empty": "No groups yet",
+    "emptyHint": "Create the first group — students can then be enrolled in it.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No groups match these filters. Change them or reset the filters.",
+    "loadError": "Could not load groups. Check your connection and try again.",
+    "status": { "planned": "Planned", "active": "Active", "finished": "Finished" },
+    "columns": {
+      "name": "Group",
+      "period": "Period",
+      "mentor": "Mentor",
+      "students": "Students",
+      "schedule": "Schedule"
+    }
+  },
+  "graduates": {
+    "searchPlaceholder": "Search by name, serial",
+    "empty": "No graduates yet",
+    "emptyHint": "Students who finish their course and receive a certificate will show up here.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No graduates match these filters. Change them or reset the filters.",
+    "loadError": "Could not load graduates. Check your connection and try again.",
+    "openCertificate": "Open",
+    "certificateSoon": "Certificate files arrive with the backend",
+    "stats": { "total": "Graduates total" },
+    "filters": { "status": "Employment", "issuedFrom": "Issued from" },
+    "employment": {
+      "employed": "Employed",
+      "open_to_work": "Open to work",
+      "freelancer": "Freelancer",
+      "further_edu": "Further edu"
+    },
+    "columns": {
+      "name": "Full name",
+      "age": "Age",
+      "issuedAt": "Date of Issue",
+      "workPlace": "Work place",
+      "serial": "Serial",
+      "certificate": "Certificate"
+    }
+  },
+  "enroll": {
+    "export": "Export CSV",
+    "chartTitle": "Enrollments by month, {{year}}",
+    "chartTotal": "Total for the year:",
+    "chartSeries": "Enrollments",
+    "chartError": "The chart failed to load. Refresh the page.",
+    "empty": "No enrollments yet",
+    "emptyFiltered": "Nothing found",
+    "emptyHint": "Enrollments appear once students are placed into groups.",
+    "loadError": "Could not load enrollments. Check your connection and try again.",
+    "filters": { "month": "Month" },
+    "columns": { "name": "Full name", "mentor": "Mentor", "date": "Date" }
+  },
+  "theme": {
+    "toDark": "Dark theme",
+    "toLight": "Light theme",
+    "aria": "Toggle theme"
+  },
+  "language": {
+    "label": "Language",
+    "ru": "Russian",
+    "tg": "Tajik",
+    "en": "English"
+  },
+  "common": {
+    "loading": "Loading…",
+    "empty": "Empty",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "back": "Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "pagination": {
+    "aria": "Pagination",
+    "range": "{{from}}–{{to}} of {{total}}",
+    "prev": "Previous page",
+    "next": "Next page"
+  },
+  "auth": {
+    "tabsAria": "Log in or apply for a course",
+    "logIn": "Log in",
+    "loggingIn": "Logging in…",
+    "signUp": "Sign up",
+    "sending": "Sending…",
+    "welcomeTo": "Welcome to",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordTitle": "Forgot password?",
+    "forgotPasswordText": "Passwords are issued by the centre administrator. Call the learning centre or drop by the front desk to restore access.",
+    "signupDoneTitle": "Application received",
+    "signupDoneText": "Thank you, {{name}}! A manager will call the phone number you provided and enrol you on a course.",
+    "backToLogin": "Back to log in",
+    "fields": {
+      "phone": "Phone",
+      "password": "Password",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "birthDate": "Date of birth",
+      "address": "Address",
+      "parentPhone": "Parent's phone"
+    },
+    "errors": {
+      "phoneRequired": "Enter a phone number",
+      "phoneFormat": "The phone number needs at least 9 digits",
+      "passwordRequired": "Enter a password",
+      "passwordShort": "Password must be at least 6 characters",
+      "firstNameRequired": "Enter a first name",
+      "lastNameRequired": "Enter a last name",
+      "birthDateRequired": "Enter a date of birth",
+      "birthDateFuture": "Date of birth cannot be in the future",
+      "addressRequired": "Enter an address",
+      "invalidCredentials": "Wrong phone number or password. Check the details and try again.",
+      "loginFailed": "Could not log in. Check your connection and try again.",
+      "signupFailed": "Could not send the application. Please try again."
+    }
+  },
+  "roles": {
+    "admin": "Administrator",
+    "manager": "Manager",
+    "mentor": "Mentor",
+    "developer": "Developer",
+    "student": "Student"
+  },
+  "errors": {
+    "forbiddenTitle": "Section unavailable",
+    "forbiddenText": "Your role has no access to this section. Ask an administrator if you need it."
+  },
+  "students": {
+    "searchPlaceholder": "Search by name",
+    "addNew": "Add new",
+    "empty": "No students yet",
+    "emptyHint": "Add the first student — they will show up in the list and can be enrolled in a group.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No students match these filters. Change them or reset the filters.",
+    "resetFilters": "Reset filters",
+    "loadError": "Could not load the student list. Check your connection and try again.",
+    "total": "Total: {{count}}",
+    "premium": "Premium",
+    "years": "{{count}} year",
+    "years_other": "{{count}} years",
+    "noGroup": "Not in a group",
+    "openJournal": "Open group journal",
+    "viewAria": "List view",
+    "viewGrid": "Grid",
+    "viewList": "Table",
+    "editAria": "Edit student {{name}}",
+    "deleteAria": "Delete student {{name}}",
+    "deleteTitle": "Delete student?",
+    "deleteText": "{{name}} will disappear from lists, groups and the journal. This cannot be undone.",
+    "deleteConfirm": "Delete",
+    "deleteError": "Could not delete the student. Please try again.",
+    "phoneAria": "Phone numbers of {{name}}",
+    "phoneOwner": { "student": "Student", "parent": "Father", "extra": "Additional" },
+    "form": {
+      "createTitle": "Add new student",
+      "editTitle": "Student profile",
+      "basicDetails": "Basic details",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "birthDate": "Birth date",
+      "gender": "Gender",
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone number",
+      "phones": "Additional phones",
+      "description": "Whose number",
+      "extraPhone": "Additional phone {{number}}",
+      "extraPhoneDescription": "Description for phone {{number}}",
+      "removePhone": "Remove phone {{number}}",
+      "addPhone": "Add new phone",
+      "branch": "Branch",
+      "chooseBranch": "Choose branch",
+      "telegram": "Telegram user name",
+      "notes": "Notes",
+      "photo": "Photo",
+      "photoAlt": "Photo of {{name}}",
+      "photoHint": "JPG or PNG, up to 2 MB. Server upload arrives with the backend.",
+      "photoTooBig": "The file is over 2 MB. Pick a smaller photo.",
+      "chooseAvatar": "Choose avatar",
+      "removePhoto": "Remove foto",
+      "save": "Save account",
+      "loadError": "Could not load the student profile. Check your connection and try again.",
+      "submitError": "Could not save. Check your connection and try again.",
+      "errors": {
+        "firstNameRequired": "Enter a first name",
+        "lastNameRequired": "Enter a last name",
+        "phoneRequired": "Enter a phone number",
+        "phoneFormat": "The phone number needs at least 9 digits",
+        "emailInvalid": "Check the email address"
+      }
+    },
+    "filters": { "course": "Course", "group": "Group", "contract": "Contract" },
+    "gender": { "male": "Male", "female": "Female" },
+    "columns": {
+      "name": "Full name",
+      "groups": "Groups",
+      "phone": "Phone",
+      "status": "Status",
+      "account": "Account",
+      "contract": "Contract",
+      "action": "Action"
+    },
+    "status": { "active": "Active", "no_active": "No Active", "finished": "Finished" },
+    "contract": {
+      "active": "Active",
+      "ending_soon": "Ending soon",
+      "finished": "Finished",
+      "daysLeft": "{{count}} day left",
+      "daysLeft_other": "{{count}} days left"
+    }
+  },
+  "topbar": { "search": "Search…" },
+  "notifications": { "title": "Notifications", "empty": "No new notifications" },
+  "profileMenu": {
+    "aria": "Profile menu",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out"
+  },
+  "sidebar": { "collapse": "Collapse menu", "expand": "Expand menu" },
+  "scaffold": {
+    "title": "Scaffold ready",
+    "note": "Stage 1 done: build, routing, themes, i18n and tokens are in place. Next — the data layer and components."
+  }
+}

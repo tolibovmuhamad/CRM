@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Значения токенов для светлой и тёмной темы. Светлые значения зеркалят примитивы
+ * из `tokens.ts` (источник правды). Тёмная палитра предварительная — уточнить по
+ * тёмным экранам макета (в Figma тема есть, отдельно не выгружалась). Переключатель
+ * ставит `data-theme` на <html>, см. features/theme.
+ */
+:root,
+:root[data-theme='light'] {
+  --c-brand: #4a3aff;
+  --c-brand-hover: #6055f2;
+  --c-brand-active: #231a97;
+  --c-brand-tint: #e2e0ff;
+  --c-brand-subtle: #f4f3ff;
+  --c-brand-on: #ffffff;
+
+  --c-ink: #262626;
+  --c-ink-secondary: #737373;
+  --c-ink-muted: #94a3b8;
+  --c-ink-disabled: #a3a3a3;
+  --c-ink-inverse: #ffffff;
+  --c-ink-link: #4a3aff;
+
+  --c-surface-page: #f8fafc;
+  --c-surface-card: #ffffff;
+  --c-surface-sunken: #f3f4f6;
+  --c-surface-hover: #fafafa;
+
+  --c-line: #e2e8f0;
+  --c-line-strong: #cbd5e1;
+  --c-line-subtle: #e5e7eb;
+  --c-line-focus: #4a3aff;
+
+  --c-success: #00d84a;
+  --c-success-fg: #2e7d32;
+  --c-success-bg: #e5ffee;
+  --c-warning: #eab100;
+  --c-warning-fg: #eab100;
+  --c-warning-bg: rgba(234, 177, 0, 0.24);
+  --c-danger: #ef4444;
+  --c-danger-fg: #ba1a1a;
+  --c-danger-bg: #fef2f2;
+  --c-late: #ff5700;
+  --c-late-fg: #ea580c;
+  --c-late-bg: rgba(234, 88, 12, 0.24);
+  --c-info: #559fff;
+  --c-info-fg: #0284c7;
+  --c-info-bg: #bae6fd;
+}
+
+:root[data-theme='dark'] {
+  --c-brand: #6c5cff;
+  --c-brand-hover: #8577ff;
+  --c-brand-active: #4a3aff;
+  --c-brand-tint: rgba(108, 92, 255, 0.24);
+  --c-brand-subtle: #1a1830;
+  --c-brand-on: #ffffff;
+
+  --c-ink: #f1f5f9;
+  --c-ink-secondary: #94a3b8;
+  --c-ink-muted: #64748b;
+  --c-ink-disabled: #475569;
+  --c-ink-inverse: #0e1422;
+  --c-ink-link: #8577ff;
+
+  --c-surface-page: #0e1422;
+  --c-surface-card: #1e293b;
+  --c-surface-sunken: #0b1220;
+  --c-surface-hover: #243244;
+
+  --c-line: #334155;
+  --c-line-strong: #475569;
+  --c-line-subtle: #1e293b;
+  --c-line-focus: #6c5cff;
+
+  --c-success: #22c55e;
+  --c-success-fg: #4ade80;
+  --c-success-bg: rgba(0, 216, 74, 0.16);
+  --c-warning: #eab100;
+  --c-warning-fg: #fbbf24;
+  --c-warning-bg: rgba(234, 177, 0, 0.16);
+  --c-danger: #ef4444;
+  --c-danger-fg: #f87171;
+  --c-danger-bg: rgba(239, 68, 68, 0.16);
+  --c-late: #ff5700;
+  --c-late-fg: #fb923c;
+  --c-late-bg: rgba(234, 88, 12, 0.16);
+  --c-info: #559fff;
+  --c-info-fg: #38bdf8;
+  --c-info-bg: rgba(85, 159, 255, 0.16);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-surface-page text-ink font-sans antialiased;
+  }
+}

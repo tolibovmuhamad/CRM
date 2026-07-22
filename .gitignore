@@ -1,0 +1,6 @@
+.env
+node_modules/
+figma/
+dist/
+coverage/
+*.tsbuildinfo

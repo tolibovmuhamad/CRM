@@ -5,6 +5,49 @@ import i18n from '@/shared/i18n';
 // Язык тестов фиксируем: иначе детектор возьмёт язык jsdom и подписи «уедут».
 void i18n.changeLanguage('ru');
 
+/**
+ * jsdom в этой связке не поднимает настоящий Storage: `window.localStorage`
+ * приходит пустым `{}` без методов, и `getItem`/`setItem`/`clear` падают
+ * с `not a function`. От localStorage зависят тема, вид списков, сессия мока и
+ * `beforeEach` тестов. Кладём минимальную in-memory реализацию Storage; в
+ * браузере приложение работает с настоящим localStorage.
+ */
+function createMemoryStorage(): Storage {
+  const store = new Map<string, string>();
+  return {
+    get length() {
+      return store.size;
+    },
+    clear() {
+      store.clear();
+    },
+    getItem(key) {
+      return store.has(key) ? (store.get(key) as string) : null;
+    },
+    key(index) {
+      return Array.from(store.keys())[index] ?? null;
+    },
+    removeItem(key) {
+      store.delete(key);
+    },
+    setItem(key, value) {
+      store.set(key, String(value));
+    },
+  };
+}
+
+if (typeof globalThis.localStorage?.clear !== 'function') {
+  const memoryStorage = createMemoryStorage();
+  Object.defineProperty(globalThis, 'localStorage', {
+    value: memoryStorage,
+    configurable: true,
+  });
+  Object.defineProperty(window, 'localStorage', {
+    value: memoryStorage,
+    configurable: true,
+  });
+}
+
 // jsdom не реализует ResizeObserver, а на нём держится ResponsiveContainer Recharts.
 if (!globalThis.ResizeObserver) {
   globalThis.ResizeObserver = class {

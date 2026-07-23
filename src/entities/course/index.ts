@@ -2,6 +2,7 @@
 export { useCourses, useCourse, useCourseResources } from './api/useCourses';
 export { CourseCard, type CourseCardProps } from './ui/CourseCard';
 export { CourseIcon, type CourseIconProps } from './ui/CourseIcon';
+export { courseColor } from './lib/courseColor';
 export { ResourceTypeIcon, type ResourceTypeIconProps } from './ui/ResourceTypeIcon';
 export type {
   Course,

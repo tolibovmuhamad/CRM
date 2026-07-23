@@ -5,8 +5,11 @@ import { Skeleton } from '@/shared/ui/Skeleton';
 
 export interface StatCardProps {
   label: ReactNode;
-  /** `undefined` — данные ещё грузятся, показываем скелет вместо нуля. */
-  value: number | undefined;
+  /**
+   * Число (счётчик) или готовая строка (например, сумма в сомони).
+   * `undefined` — данные ещё грузятся, показываем скелет вместо нуля.
+   */
+  value: number | string | undefined;
   /** Цветная точка слева, как у счётчиков в макете. */
   toneClassName?: string;
   className?: string;

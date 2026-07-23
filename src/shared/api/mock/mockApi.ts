@@ -13,18 +13,33 @@ import {
   graduateStatsSchema,
   employeesQuerySchema,
   groupsQuerySchema,
+  logsQuerySchema,
+  usersQuerySchema,
+  journalQuerySchema,
+  journalSchema,
   loginDtoSchema,
   paginatedSchema,
   paymentsQuerySchema,
+  paymentStatsSchema,
+  sendSmsDtoSchema,
   sessionSchema,
   signupDtoSchema,
   signupRequestSchema,
+  type SmsAudience,
+  smsAudienceCountSchema,
+  smsAudienceInputSchema,
+  smsMailingSchema,
+  smsMailingsQuerySchema,
+  smsTemplatesSchema,
   studentSchema,
   studentsQuerySchema,
+  timetableQuerySchema,
+  timetableSchema,
   updateStudentDtoSchema,
 } from '../schemas';
 import { normalizePhone } from '@/mocks/fixtures/accounts';
 import { db } from './db';
+import { buildJournalData } from './journal';
 import { queryList } from './queryList';
 import { simulateNetwork } from './latency';
 import { sessionStore } from './sessionStore';
@@ -35,6 +50,24 @@ import { sessionStore } from './sessionStore';
  */
 function stripEmpty<T extends Record<string, unknown>>(data: T): Partial<T> {
   return Object.fromEntries(Object.entries(data).filter(([, v]) => v !== '')) as Partial<T>;
+}
+
+/** Число получателей аудитории рассылки — считается из реальных данных БД. */
+function smsAudienceCount(audience: SmsAudience, groupId?: string): number {
+  switch (audience) {
+    case 'students':
+      return db.students.length;
+    case 'group':
+      return groupId
+        ? db.students.filter((s) => s.groups.some((g) => g.id === groupId)).length
+        : 0;
+    case 'leads':
+      return db.signupRequests.length;
+    case 'graduates':
+      return db.graduates.length;
+    case 'mentors':
+      return db.employees.filter((e) => e.position === 'mentor').length;
+  }
 }
 
 /**
@@ -290,6 +323,51 @@ export const mockApi: CrmApi = {
     });
   },
 
+  async getTimetable(query) {
+    const q = timetableQuerySchema.parse(query ?? {});
+    await simulateNetwork();
+    const courseById = new Map(db.courses.map((c) => [c.id, c]));
+    const lessons = db.groups
+      // Завершённые группы в расписании не идут — занятий у них уже нет.
+      .filter((g) => g.status !== 'finished')
+      .filter(
+        (g) =>
+          (!q.branchId || g.branchId === q.branchId) &&
+          (!q.mentorId || g.mentorId === q.mentorId) &&
+          (!q.courseId || g.courseId === q.courseId),
+      )
+      .flatMap((g) => {
+        const course = courseById.get(g.courseId);
+        const [startTime, endTime] = (g.lessonTime ?? '').split('-').map((s) => s.trim());
+        // Без курса, времени или дней занятий строку расписания не собрать.
+        if (!course || !startTime || g.scheduleDays.length === 0) return [];
+        return g.scheduleDays.map((weekday) => ({
+          id: `${g.id}-${weekday}`,
+          groupId: g.id,
+          groupName: g.name,
+          courseId: g.courseId,
+          courseName: course.name,
+          courseIcon: course.icon,
+          mentorId: g.mentorId,
+          mentorName: g.mentorName,
+          branchId: g.branchId,
+          weekday,
+          startTime,
+          endTime: endTime || undefined,
+        }));
+      });
+    return timetableSchema.parse(lessons);
+  },
+
+  async getJournal(query) {
+    const q = journalQuerySchema.parse(query);
+    await simulateNetwork();
+    const group = db.groups.find((g) => g.id === q.groupId);
+    if (!group) throw new ApiError(404, `Группа ${q.groupId} не найдена`);
+    const groupStudents = db.students.filter((s) => s.groups.some((g) => g.id === q.groupId));
+    return journalSchema.parse(buildJournalData(group, groupStudents));
+  },
+
   async getPayments(query) {
     const q = paymentsQuerySchema.parse(query ?? {});
     await simulateNetwork();
@@ -300,6 +378,84 @@ export const mockApi: CrmApi = {
         (!q.studentId || p.studentId === q.studentId) && (!q.status || p.status === q.status),
       sortBy: q.sortBy,
       sortDir: q.sortDir,
+    });
+  },
+
+  async getPaymentStats() {
+    await simulateNetwork();
+    const sumBy = (status: 'paid' | 'pending') =>
+      db.payments.filter((p) => p.status === status).reduce((sum, p) => sum + p.amount, 0);
+    return paymentStatsSchema.parse({
+      collected: sumBy('paid'),
+      pending: sumBy('pending'),
+      count: db.payments.length,
+    });
+  },
+
+  async getSmsTemplates() {
+    await simulateNetwork();
+    return smsTemplatesSchema.parse(db.smsTemplates);
+  },
+
+  async getSmsMailings(query) {
+    const q = smsMailingsQuerySchema.parse(query ?? {});
+    await simulateNetwork();
+    return queryList(db.smsMailings, {
+      page: q.page,
+      pageSize: q.pageSize,
+      filter: (m) => !q.audience || m.audience === q.audience,
+      sortBy: 'createdAt',
+      sortDir: 'desc',
+    });
+  },
+
+  async getSmsAudienceCount(input) {
+    const q = smsAudienceInputSchema.parse(input);
+    await simulateNetwork();
+    return smsAudienceCountSchema.parse({ count: smsAudienceCount(q.audience, q.groupId) });
+  },
+
+  async sendSms(dto) {
+    const data = sendSmsDtoSchema.parse(dto);
+    await simulateNetwork();
+    const group = data.groupId ? db.groups.find((g) => g.id === data.groupId) : undefined;
+    const mailing = smsMailingSchema.parse({
+      id: crypto.randomUUID(),
+      audience: data.audience,
+      groupId: data.groupId,
+      groupName: group?.name,
+      recipientCount: smsAudienceCount(data.audience, data.groupId),
+      text: data.text,
+      status: 'sent',
+      createdAt: new Date().toISOString(),
+    });
+    db.smsMailings.unshift(mailing);
+    return mailing;
+  },
+
+  async getUsers(query) {
+    const q = usersQuerySchema.parse(query ?? {});
+    await simulateNetwork();
+    return queryList(db.accounts, {
+      page: q.page,
+      pageSize: q.pageSize,
+      search: q.search,
+      searchFields: ['fullName', 'phone'],
+      filter: (u) => !q.role || u.role === q.role,
+    });
+  },
+
+  async getLogs(query) {
+    const q = logsQuerySchema.parse(query ?? {});
+    await simulateNetwork();
+    return queryList(db.logs, {
+      page: q.page,
+      pageSize: q.pageSize,
+      search: q.search,
+      searchFields: ['userName', 'target'],
+      filter: (l) => !q.action || l.action === q.action,
+      sortBy: 'createdAt',
+      sortDir: 'desc',
     });
   },
 };

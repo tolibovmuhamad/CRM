@@ -1,4 +1,5 @@
 import type {
+  AuthUser,
   Branch,
   BranchesQuery,
   Course,
@@ -16,16 +17,30 @@ import type {
   GraduateStats,
   Group,
   GroupsQuery,
+  Journal,
+  JournalQuery,
+  LogEntry,
+  LogsQuery,
   LoginDto,
   Paginated,
   Payment,
   PaymentsQuery,
+  PaymentStats,
+  SendSmsDto,
   Session,
   SignupDto,
   SignupRequest,
+  SmsAudienceCount,
+  SmsAudienceInput,
+  SmsMailing,
+  SmsMailingsQuery,
+  SmsTemplate,
   Student,
   StudentsQuery,
+  TimetableLesson,
+  TimetableQuery,
   UpdateStudentDto,
+  UsersQuery,
 } from './schemas';
 
 /**
@@ -75,6 +90,23 @@ export interface CrmApi {
   // Сотрудники / менторы
   getEmployees(query: EmployeesQuery): Promise<Paginated<Employee>>;
 
-  // Платежи
+  // Расписание (Timetable) — недельная сетка занятий из активных групп
+  getTimetable(query: TimetableQuery): Promise<TimetableLesson[]>;
+
+  // Журнал посещаемости группы
+  getJournal(query: JournalQuery): Promise<Journal>;
+
+  // Платежи (Accounting → Payments)
   getPayments(query: PaymentsQuery): Promise<Paginated<Payment>>;
+  getPaymentStats(): Promise<PaymentStats>;
+
+  // SMS-рассылки
+  getSmsTemplates(): Promise<SmsTemplate[]>;
+  getSmsMailings(query: SmsMailingsQuery): Promise<Paginated<SmsMailing>>;
+  getSmsAudienceCount(input: SmsAudienceInput): Promise<SmsAudienceCount>;
+  sendSms(dto: SendSmsDto): Promise<SmsMailing>;
+
+  // Администрирование: пользователи и журнал действий
+  getUsers(query: UsersQuery): Promise<Paginated<AuthUser>>;
+  getLogs(query: LogsQuery): Promise<Paginated<LogEntry>>;
 }

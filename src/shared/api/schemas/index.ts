@@ -9,3 +9,7 @@ export * from './branch';
 export * from './graduate';
 export * from './enrollment';
 export * from './payment';
+export * from './timetable';
+export * from './journal';
+export * from './sms';
+export * from './admin';

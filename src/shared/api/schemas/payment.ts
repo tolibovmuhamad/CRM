@@ -32,3 +32,11 @@ export const paymentsQuerySchema = paginationQuerySchema.extend({
   sortDir: sortDirectionSchema.optional(),
 });
 export type PaymentsQuery = z.input<typeof paymentsQuerySchema>;
+
+/** Сводка по платежам (плитки над таблицей). Суммы в дирамах (ТЗ §9). */
+export const paymentStatsSchema = z.object({
+  collected: diramSchema,
+  pending: diramSchema,
+  count: z.number().int().nonnegative(),
+});
+export type PaymentStats = z.infer<typeof paymentStatsSchema>;

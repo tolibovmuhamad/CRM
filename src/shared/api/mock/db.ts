@@ -2,6 +2,7 @@ import { z } from 'zod';
 import {
   authUserSchema,
   branchSchema,
+  logEntrySchema,
   courseResourceSchema,
   courseSchema,
   enrollmentSchema,
@@ -9,7 +10,9 @@ import {
   employeeSchema,
   groupSchema,
   paymentSchema,
-  type SignupRequest,
+  signupRequestSchema,
+  smsMailingSchema,
+  smsTemplateSchema,
   studentSchema,
 } from '../schemas';
 import { demoAccountsFixture } from '@/mocks/fixtures/accounts';
@@ -19,8 +22,12 @@ import { graduatesFixture } from '@/mocks/fixtures/graduates';
 import { coursesFixture } from '@/mocks/fixtures/courses';
 import { employeesFixture } from '@/mocks/fixtures/employees';
 import { groupsFixture } from '@/mocks/fixtures/groups';
+import { leadsFixture } from '@/mocks/fixtures/leads';
+import { logsFixture } from '@/mocks/fixtures/logs';
 import { resourcesFixture } from '@/mocks/fixtures/resources';
 import { paymentsFixture } from '@/mocks/fixtures/payments';
+import { smsMailingsFixture } from '@/mocks/fixtures/smsMailings';
+import { smsTemplatesFixture } from '@/mocks/fixtures/smsTemplates';
 import { studentsFixture } from '@/mocks/fixtures/students';
 
 /**
@@ -38,6 +45,9 @@ export const db = {
   graduates: z.array(graduateSchema).parse(graduatesFixture),
   enrollments: z.array(enrollmentSchema).parse(enrollmentsFixture),
   accounts: z.array(authUserSchema).parse(demoAccountsFixture),
-  /** Заявки с экрана Sign up — накапливаются за время сессии страницы. */
-  signupRequests: [] as SignupRequest[],
+  /** Заявки с экрана Sign up = лиды. Стартовые из фикстуры, пополняются за сессию. */
+  signupRequests: z.array(signupRequestSchema).parse(leadsFixture),
+  smsTemplates: z.array(smsTemplateSchema).parse(smsTemplatesFixture),
+  smsMailings: z.array(smsMailingSchema).parse(smsMailingsFixture),
+  logs: z.array(logEntrySchema).parse(logsFixture),
 };

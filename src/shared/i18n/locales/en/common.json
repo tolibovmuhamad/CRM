@@ -175,6 +175,157 @@
     "filters": { "month": "Month" },
     "columns": { "name": "Full name", "mentor": "Mentor", "date": "Date" }
   },
+  "employees": {
+    "addNew": "Add mentor",
+    "addSoon": "The mentor form comes in a later stage",
+    "searchPlaceholder": "Search by name",
+    "allPositions": "All positions",
+    "groups": "Groups:",
+    "level": "Level {{level}}",
+    "viewAria": "Employees list view",
+    "empty": "No employees yet",
+    "emptyHint": "Mentors and the center staff will appear here.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No employees match these filters. Change them or reset the filters.",
+    "loadError": "Could not load employees. Check the connection and try again.",
+    "columns": {
+      "name": "Name",
+      "position": "Position",
+      "level": "Level",
+      "groups": "Groups"
+    }
+  },
+  "dashboard": {
+    "stats": {
+      "students": "Students",
+      "groups": "Groups",
+      "employees": "Employees",
+      "collected": "Collected"
+    },
+    "enrollTitle": "Enrollments by month, {{year}}",
+    "incomeTitle": "Income by group",
+    "income": "Income",
+    "graduatesTitle": "Employed graduates",
+    "graduatesEmpty": "No employed graduates yet",
+    "loadError": "Could not load the data. Check the connection and try again."
+  },
+  "admin": {
+    "tabs": { "users": "Users", "roles": "Roles", "logs": "Activity log" },
+    "users": {
+      "searchPlaceholder": "Search by name or phone",
+      "allRoles": "All roles",
+      "empty": "No users yet",
+      "emptyHint": "Staff with system access will appear here.",
+      "emptyFiltered": "Nothing found",
+      "emptyFilteredHint": "No users match these conditions. Change them or reset the filters.",
+      "loadError": "Could not load users. Check the connection and try again.",
+      "columns": { "name": "Name", "phone": "Phone", "role": "Role" }
+    },
+    "roles": {
+      "note": "The access matrix is our proposal, not a spec requirement. Editing comes with the mockup.",
+      "section": "Section",
+      "allowed": "Allowed",
+      "denied": "Denied"
+    },
+    "logs": {
+      "searchPlaceholder": "Search by user or target",
+      "allActions": "All actions",
+      "empty": "No entries yet",
+      "emptyHint": "User actions in the system will show up here.",
+      "emptyFiltered": "Nothing found",
+      "emptyFilteredHint": "No entries match these conditions. Change them or reset the filters.",
+      "loadError": "Could not load the log. Check the connection and try again.",
+      "columns": { "user": "User", "action": "Action", "target": "Target", "date": "When" }
+    },
+    "action": {
+      "create": "Create",
+      "update": "Update",
+      "delete": "Delete",
+      "login": "Login",
+      "send": "Send"
+    }
+  },
+  "sms": {
+    "title": "SMS mailings",
+    "compose": "New mailing",
+    "audience": {
+      "label": "Audience",
+      "group": "Group",
+      "students": "Students",
+      "leads": "Leads",
+      "graduates": "Graduates",
+      "mentors": "Mentors"
+    },
+    "chooseGroup": "Choose a group",
+    "recipients": "Recipients: {{count}}",
+    "insertTemplate": "Insert template",
+    "message": "Message",
+    "messagePlaceholder": "Message text…",
+    "counter": "{{chars}} chars · {{sms}} SMS",
+    "send": "Send",
+    "sending": "Sending…",
+    "sent": "Mailing sent — recipients: {{count}}",
+    "sendError": "Could not send the mailing. Please try again.",
+    "noRecipients": "This audience has no recipients yet.",
+    "history": "Mailing history",
+    "empty": "No mailings yet",
+    "emptyHint": "Send your first mailing — it will appear in the history.",
+    "loadError": "Could not load the mailing history. Check the connection and try again.",
+    "status": { "sent": "Sent", "queued": "Queued", "failed": "Failed" },
+    "columns": {
+      "audience": "Audience",
+      "recipients": "Recipients",
+      "text": "Text",
+      "date": "Date",
+      "status": "Status"
+    },
+    "errors": {
+      "textRequired": "Enter the message text",
+      "textTooLong": "The message is too long (max 500 characters)"
+    }
+  },
+  "accounting": {
+    "payments": "Payments",
+    "allStatuses": "All statuses",
+    "empty": "No payments yet",
+    "emptyHint": "Once students start paying for tuition, payments will appear here.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No payments match this filter. Change it or reset the filter.",
+    "loadError": "Could not load payments. Check the connection and try again.",
+    "stats": { "collected": "Collected", "pending": "Pending", "count": "Payments" },
+    "status": { "paid": "Paid", "pending": "Pending" },
+    "type": { "tuition": "Tuition", "other": "Other" },
+    "columns": {
+      "student": "Student",
+      "date": "Date",
+      "type": "Purpose",
+      "amount": "Amount",
+      "status": "Status"
+    }
+  },
+  "journal": {
+    "group": "Group",
+    "student": "Student",
+    "empty": "No students in this group yet",
+    "emptyHint": "Once students are enrolled in the group, they appear in the journal with all lessons.",
+    "loadError": "Could not load the journal. Check the connection and try again.",
+    "summary": { "present": "Present", "late": "Late", "absent": "Absent" },
+    "status": { "present": "Present", "late": "Late", "absent": "Absent" },
+    "statusShort": { "present": "P", "late": "L", "absent": "A" }
+  },
+  "timetable": {
+    "lessonCount": "{{count}} lesson this week",
+    "lessonCount_other": "{{count}} lessons this week",
+    "mentor": "Mentor",
+    "allMentors": "All mentors",
+    "today": "today",
+    "dayEmpty": "No lessons",
+    "empty": "No lessons yet",
+    "emptyHint": "The timetable is built from active groups. Once groups have days and times, lessons appear in the grid.",
+    "emptyFiltered": "Nothing found",
+    "emptyFilteredHint": "No lessons match these filters. Change them or reset the filters.",
+    "loadError": "Could not load the timetable. Check the connection and try again."
+  },
   "theme": {
     "toDark": "Dark theme",
     "toLight": "Light theme",

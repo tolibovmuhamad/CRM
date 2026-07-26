@@ -6,8 +6,14 @@ import type {
   EnrollmentsQuery,
   GraduatesQuery,
   GroupsQuery,
+  JournalQuery,
+  LogsQuery,
   PaymentsQuery,
+  SmsAudienceInput,
+  SmsMailingsQuery,
   StudentsQuery,
+  TimetableQuery,
+  UsersQuery,
 } from './schemas';
 
 /** Фабрики ключей TanStack Query. Единое место, чтобы инвалидация была предсказуемой. */
@@ -47,8 +53,31 @@ export const queryKeys = {
     all: ['employees'] as const,
     list: (query: EmployeesQuery) => ['employees', 'list', query] as const,
   },
+  timetable: {
+    all: ['timetable'] as const,
+    list: (query: TimetableQuery) => ['timetable', 'list', query] as const,
+  },
+  journal: {
+    all: ['journal'] as const,
+    detail: (query: JournalQuery) => ['journal', 'detail', query] as const,
+  },
   payments: {
     all: ['payments'] as const,
     list: (query: PaymentsQuery) => ['payments', 'list', query] as const,
+    stats: ['payments', 'stats'] as const,
+  },
+  sms: {
+    all: ['sms'] as const,
+    templates: ['sms', 'templates'] as const,
+    mailings: (query: SmsMailingsQuery) => ['sms', 'mailings', query] as const,
+    audienceCount: (input: SmsAudienceInput) => ['sms', 'audienceCount', input] as const,
+  },
+  users: {
+    all: ['users'] as const,
+    list: (query: UsersQuery) => ['users', 'list', query] as const,
+  },
+  logs: {
+    all: ['logs'] as const,
+    list: (query: LogsQuery) => ['logs', 'list', query] as const,
   },
 } as const;

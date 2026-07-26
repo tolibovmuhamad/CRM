@@ -1,6 +1,6 @@
 import type { CourseIcon as CourseIconKey } from '@/shared/api';
-import { chart } from '@/shared/styles/tokens';
 import { cn } from '@/shared/lib/cn';
+import { courseColor } from '../lib/courseColor';
 
 /**
  * Кружок курса (в макете — `JS_circle` 56×56 внутри компонента `Course`).
@@ -23,25 +23,13 @@ const shortCodes: Record<CourseIconKey, string> = {
   react: 'Re',
 };
 
-/** Индекс цвета в палитре — фиксированный, чтобы курс всегда был одного цвета. */
-const colorIndex: Record<CourseIconKey, number> = {
-  csharp: 0,
-  cpp: 1,
-  frontend: 2,
-  python: 3,
-  htmlcss: 4,
-  uxui: 5,
-  javascript: 6,
-  react: 7,
-};
-
 export interface CourseIconProps {
   icon: CourseIconKey;
   className?: string;
 }
 
 export function CourseIcon({ icon, className }: CourseIconProps) {
-  const color = chart.categorical[colorIndex[icon] % chart.categorical.length];
+  const color = courseColor(icon);
 
   return (
     <span

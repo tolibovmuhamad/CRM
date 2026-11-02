@@ -61,6 +61,8 @@ export const router = createBrowserRouter(
     },
   ],
   {
+    // Базовый путь берётся из Vite (`--base`): локально это «/», на GitHub Pages — «/CRM/».
+    basename: import.meta.env.BASE_URL.replace(/\/$/, '') || '/',
     future: {
       v7_relativeSplatPath: true,
     },
